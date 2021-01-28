@@ -10,9 +10,12 @@ public class PlanetMovement : MonoBehaviour
     public float radius = 2;
     private float age = 0;
     public float speed = 1;
-    void Start()
+    private float rotY; 
+
+
+    private void Start()
     {
-        
+        age = Random.Range(0, 10);
     }
 
     // Update is called once per frame
@@ -24,5 +27,14 @@ public class PlanetMovement : MonoBehaviour
 
         transform.position = target.position + offset;
 
+        rotY += Time.deltaTime * speed;
+
+        transform.rotation = Quaternion.Euler(0, rotY, 0);
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(target.position, radius);
     }
 }
