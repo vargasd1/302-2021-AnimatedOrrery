@@ -15,7 +15,7 @@ public class PlanetMovement : MonoBehaviour
 
     private void Start()
     {
-        age = Random.Range(0, 10);
+       // age = Random.Range(0, 10);
     }
 
     // Update is called once per frame
