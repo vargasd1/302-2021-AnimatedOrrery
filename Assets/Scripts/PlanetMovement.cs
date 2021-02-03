@@ -10,7 +10,8 @@ public class PlanetMovement : MonoBehaviour
     public float radius = 2;
     private float age = 0;
     public float speed = 1;
-    private float rotY; 
+    private float rotY;
+    
 
 
     private void Start()
@@ -21,13 +22,19 @@ public class PlanetMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        age += Time.deltaTime;
-
+        if (!GameManager.rewind)
+        {
+            age += Time.deltaTime * GameManager.timeSpeed;
+        }
+        else
+        {
+            age -= Time.deltaTime * GameManager.timeSpeed;
+        }
         Vector3 offset = AnimMath.revolve(radius, age, speed);
 
         transform.position = target.position + offset;
 
-        rotY += Time.deltaTime * speed;
+        rotY += Time.deltaTime * speed * GameManager.timeSpeed;
 
         transform.rotation = Quaternion.Euler(0, rotY, 0);
 
@@ -37,4 +44,7 @@ public class PlanetMovement : MonoBehaviour
     {
         Gizmos.DrawWireSphere(target.position, radius);
     }
+
+
+
 }

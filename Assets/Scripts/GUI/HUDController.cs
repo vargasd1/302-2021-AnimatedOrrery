@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HUDController : MonoBehaviour
 {
     public GameObject camRig;
-    private OrbitCamControl component; 
+    private OrbitCamControl component;
+    public TMP_Text textTimeScale;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +52,21 @@ public class HUDController : MonoBehaviour
         component.doOnce = true;
     }
 
-
+    public void speedSlider(float amt)
+    {
+        if (amt < 0)
+        {
+            GameManager.timeSpeed = -amt;
+            GameManager.rewind = true;
+            textTimeScale.text = System.Math.Round(-GameManager.timeSpeed, 1).ToString();
+        }
+        else
+        {
+            GameManager.timeSpeed = amt;
+            GameManager.rewind = false;
+            textTimeScale.text = System.Math.Round(GameManager.timeSpeed, 1).ToString();
+        }
+            
+    }
+    
 }

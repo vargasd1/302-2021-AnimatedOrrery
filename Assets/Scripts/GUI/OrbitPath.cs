@@ -14,7 +14,7 @@ public class OrbitPath : MonoBehaviour
         line = GetComponent<LineRenderer>();
 
 
-        float dis = 2;
+        //float dis = 2;
         float rad = 0;
 
         Vector3[] pts = new Vector3[num];
